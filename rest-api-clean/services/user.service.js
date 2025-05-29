@@ -1,10 +1,18 @@
 const { User } = require('../models');
 
+// Import bcrypt for password hashing
+const bcrypt = require('bcrypt');
+
 exports.findAll = async () => {
   return await User.findAll();
 };
 
 exports.create = async (data) => {
+    
+    // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    data.password = hashedPassword; // Hash the password before saving
+
   return await User.create(data);
 };
 

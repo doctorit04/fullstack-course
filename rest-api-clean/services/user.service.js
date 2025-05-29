@@ -8,7 +8,7 @@ exports.findAll = async () => {
 };
 
 exports.create = async (data) => {
-    
+
     // Hash the password before saving
     const hashedPassword = await bcrypt.hash(data.password, 10);
     data.password = hashedPassword; // Hash the password before saving
@@ -45,4 +45,11 @@ exports.findById = async (id) => {
     //เทียบเท่า SELECT * FROM USER WHERE id = id;
   return await User.findByPk(id);
 };
+
+
+//Get user by email
+exports.findByEmail = async (email) => {
+    //เทียบเท่า SELECT * FROM USER WHERE email = email;
+  return await User.findOne({ where: { email } });
+}; 
 

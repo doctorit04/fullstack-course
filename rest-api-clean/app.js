@@ -3,11 +3,14 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+const cors = require('cors');
+
 const userRoutes = require('./routes/user.route');
 const authRoutes = require('./routes/auth.route');
 
 
 app.use(express.json());
+app.use(cors()); // Enable CORS for all routes
 
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);

@@ -60,17 +60,19 @@ export default function AddUserForm() {
         method: "POST",
         url: 'http://localhost:3000/api/users'
         }).then(response => {
+
             alert("User added successfully");
+
+            setTimeout(() => {
+                //delay 1 second then redirect to all users page
+                window.location.href = '/alluser';
+            }, 1000);
 
             // log the response data to console
             console.log(response.data);
         });
-        
-
     }
     
-
-
   return (
     <div className='container mt-5'>
         <form onSubmit={handleSubmit}>

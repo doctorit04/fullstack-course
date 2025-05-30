@@ -1,4 +1,8 @@
 import React, {useState} from 'react'
+import validateConfirmPassword from '../utility/ValidateConfirmPassword';
+import validatePassword from '../utility/ValidatePassword';
+import validateEmail from '../utility/ValidateEmail';
+
 
 export default function AddUserForm() {
 

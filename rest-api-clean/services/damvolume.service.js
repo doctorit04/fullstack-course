@@ -1,12 +1,9 @@
 // src/services/damvolume.service.js
-const { DamVolume } = require('../models');
+const { DamsVolume } = require('../models');
 
-exports.bulkInsert = async (data) => {
+exports.bulkInsert = async (dataCollection) => {
 
-  //const damCode = data.map(item => item.dam_code);
-
-
-  const formattedData = data.map(item => ({
+  const formattedData = dataCollection.map(item => ({
     dam_code: item.dam_code,
     monitor_date: item.monitor_date,
     measure_level: item.measure_level,
@@ -17,5 +14,5 @@ exports.bulkInsert = async (data) => {
     updatedAt: new Date()
   }));
 
-  await DamVolume.bulkCreate(formattedData, { ignoreDuplicates: true });
+  await DamsVolume.bulkCreate(formattedData, { ignoreDuplicates: true });
 };

@@ -2,6 +2,7 @@
 const damVolumeService = require('../services/damvolume.service');
 const XLSX = require('xlsx');
 const fs = require('fs');
+const exp = require('constants');
 
 exports.uploadExcel = async (req, res) => {
   try {
@@ -52,4 +53,28 @@ exports.uploadExcel = async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'เกิดข้อผิดพลาดในการอัปโหลด' });
   }
+};
+
+exports.getDamVolumes = async (req, res) => {   
+    try {
+        const damCode = req.params.code;
+    
+        // ตรวจสอบว่ามี damCode หรือไม่
+        if (!damCode) {
+            return res.status(400).json({ error: 'กรุณาระบุ damCode' });
+        }
+    
+        // เรียกข้อมูลจาก service
+        const data = await damVolumeService.getDamVolumesByCode(damCode);
+    
+        // ตรวจสอบว่ามีข้อมูลหรือไม่
+        if (!data || data.length === 0) {
+            return res.status(404).json({ error: 'ไม่พบข้อมูลสำหรับ damCode นี้' });
+        }
+    
+        res.json(data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'เกิดข้อผิดพลาดในการดึงข้อมูล' });
+    }       
 };

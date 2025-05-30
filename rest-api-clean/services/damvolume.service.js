@@ -16,3 +16,10 @@ exports.bulkInsert = async (dataCollection) => {
 
   await DamsVolume.bulkCreate(formattedData, { ignoreDuplicates: true });
 };
+
+exports.getDamVolumesByCode = async (damCode) => { 
+  return await DamsVolume.findAll({
+    where: { dam_code: damCode },
+    order: [['monitor_date', 'ASC']]
+  });
+}

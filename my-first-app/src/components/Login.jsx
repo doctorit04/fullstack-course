@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react'
-import {Form, Button} from 'react-bootstrap';
+import { Form, Button, Container, Card } from 'react-bootstrap';
 import axios from 'axios';
+import './LoginPage.css';
 
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
@@ -11,7 +12,7 @@ export default function Login() {
     // State variables for email and password
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     // Function to handle input changes
     const handleInputChange = (event) => {
@@ -47,7 +48,9 @@ export default function Login() {
                 localStorage.setItem('token', response.data.token);
 
                 // Redirect or update UI after successful login
-                navigate('/dashboard'); //ไปหน้า Dashboard
+                //navigate('/dashboard'); //ไปหน้า Dashboard
+                window.location.href = '/dashboard'; //ไปหน้า Dashboard
+
 
             })
             .catch(error => {
@@ -60,36 +63,44 @@ export default function Login() {
     // Render the form
     // Note: The form is not actually submitted anywhere in this example
   return (
-    <>
-    <Form.Label htmlFor="inputEmail5">Email address</Form.Label>
-        <Form.Control
-            type="email"
-            id="email"
-            aria-describedby="emailHelpBlock"
-            onChange={handleInputChange}
-        />    
-        <br />
-     <Form.Label htmlFor="inputPassword5">Password</Form.Label>
-      <Form.Control
-        type="password"
-        id="password"
-        aria-describedby="passwordHelpBlock"
-        onChange={handleInputChange}
-      />
-      <Form.Text id="passwordHelpBlock" muted>
-        Your password must be 8-20 characters long, contain letters and numbers,
-        and must not contain spaces, special characters, or emoji.
-      </Form.Text>
-        <br />
+ <div className="login-wrapper">
+      <Card className="login-box">
+        <Card.Body>
+          <h3 className="text-center mb-4">เข้าสู่ระบบ</h3>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                onChange={handleInputChange}
+                placeholder="Enter email"
+              />
+            </Form.Group>
 
-        <div>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                onChange={handleInputChange}
+                placeholder="Enter password"
+              />
+              <Form.Text muted>
+                Password must be 8–20 characters long and not contain symbols.
+              </Form.Text>
+            </Form.Group>
+
+            <Button variant="primary" type="submit" className="w-100">
+              เข้าสู่ระบบ
+            </Button>
+          </Form>
+
+          {/* Optional: แสดงค่า email/password */}
+          <div className="mt-3">
             {email && <p>Email: {email}</p>}
             {password && <p>Password: {password}</p>}
-        </div>
-
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-        เข้าสู่ระบบ
-      </Button>
-    </>
+          </div>
+        </Card.Body>
+      </Card>
+    </div>
   )
 }

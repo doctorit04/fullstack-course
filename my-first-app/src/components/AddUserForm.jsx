@@ -3,6 +3,7 @@ import validateConfirmPassword from '../utility/ValidateConfirmPassword';
 import validatePassword from '../utility/ValidatePassword';
 import validateEmail from '../utility/ValidateEmail';
 
+import axios from 'axios';
 
 export default function AddUserForm() {
 
@@ -47,10 +48,24 @@ export default function AddUserForm() {
             name: name,
             email: email,
             password: password,
-            confirmPassword: confirmPassword
         };
 
-    console.log('User Data to be sent:', userData);
+        //get token from local storage
+        const token = localStorage.getItem('token');
+        axios.request({
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: userData, // data to be sent to the server
+        method: "POST",
+        url: 'http://localhost:3000/api/users'
+        }).then(response => {
+            alert("User added successfully");
+
+            // log the response data to console
+            console.log(response.data);
+        });
+        
 
     }
     

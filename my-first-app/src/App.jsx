@@ -9,6 +9,7 @@ import MainLayout from './components/MainLayout';
 import AddUser from './pages/AddUser';
 import Separated from './pages/Separated';
 import Something from './pages/Something';
+import AllUserByUseFetch from './pages/AllUserByUseFetch';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/dashboard" element={<MainLayout><Dashboard /></MainLayout>} />
         <Route path="/alluser" element={<MainLayout><AllUser /></MainLayout>} />
         <Route path="/adduser" element={<MainLayout><AddUser /></MainLayout>} />
+        <Route path="/alluser-by-usefetch" element={<MainLayout><AllUserByUseFetch /></MainLayout>} />
         <Route path="/separated" element={<MainLayout><Separated /></MainLayout>} />
         <Route path="/something" element={<MainLayout><Something /></MainLayout>} />
         <Route path="/login" element={<LoginPage />} />

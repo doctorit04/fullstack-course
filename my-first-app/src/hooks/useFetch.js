@@ -22,7 +22,7 @@ const useFetch = (url) => {
             Authorization: 'Bearer '+token
         },
         method: "GET",
-        url: 'http://localhost:3000/api/users'
+        url: url
         }).then(response => {
             // set the response data to state
             setData(response.data);

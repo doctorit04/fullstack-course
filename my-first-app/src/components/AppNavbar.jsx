@@ -34,6 +34,7 @@ function AppNavbar() {
                 <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
                  <NavDropdown title="Admin Action" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/alluser">All User</NavDropdown.Item>
+                  <NavDropdown.Item href="/alluser-by-usefetch">All User By useFetch</NavDropdown.Item>
                   <NavDropdown.Item href="/adduser">Add User</NavDropdown.Item>
                   <NavDropdown.Item href="/something">Something</NavDropdown.Item>
                   <NavDropdown.Divider />

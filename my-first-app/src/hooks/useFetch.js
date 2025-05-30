@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null);     // ข้อมูลที่โหลดได้
+  const [data, setData] = useState([]);     // ข้อมูลที่โหลดได้
   const [loading, setLoading] = useState(true); // สถานะกำลังโหลด
   const [error, setError] = useState(null);     // เก็บข้อผิดพลาด
 

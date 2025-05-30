@@ -5,9 +5,9 @@ import UserTable from '../components/UserTable';
 
 export default function AllUserByUseFetch() {
 
+
   const url = 'http://localhost:3000/api/users';
   const { data: allUsers} = useFetch(url);
-
 
   return (
      <div>

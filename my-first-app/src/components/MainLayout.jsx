@@ -4,7 +4,7 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <AppNavbar />
-      <div className="container" style={{ paddingTop: '80px' }}>
+      <div className="container" style={{ paddingTop: '20px' }}>
         {children}
       </div>
     </>

@@ -42,6 +42,28 @@ export default function AddUserForm() {
     // Function to handle form submission
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        // Validate the form fields
+        if (!name || !email || !password || !confirmPassword) {
+            alert("All fields are required");
+            return;
+        }
+
+        if (!validateEmail(email).valid) {
+            alert(validateEmail(email).error);
+            return;
+        }
+
+        if (!validatePassword(password).valid) {
+            alert(validatePassword(password).error);
+            return;
+        }
+
+        if (!validateConfirmPassword(password, confirmPassword).valid) {
+            alert(validateConfirmPassword(password, confirmPassword).error);
+            return;
+        }
+
         
         // Here you would typically send the data to your server
         const userData = {
